@@ -6,7 +6,7 @@
 - 在NPM上发布一个包
 - NPM 社区版本规范
 
-## 如何开发一个组件
+## 如何开发一个Vue组件
 
 以Vue插件为例，插件一般有以下几种形式导入：
 
@@ -61,3 +61,15 @@ npm 会根据 new version 指定的类型更新 package.json 中的 version 字�
 升级补丁版本号：npm version patch
 升级小版本号：npm version minor
 升级大版本号：npm version major
+
+## npm报错处理
+
+### npm权限问题
+
+On npm install: Unhandled rejection Error: EACCES: permission denied
+https://stackoverflow.com/questions/50639690/on-npm-install-unhandled-rejection-error-eacces-permission-denied
+
+解决方案：
+
+sudo chown -R $USER:$GROUP ~/.npm
+sudo chown -R $USER:$GROUP ~/.config
