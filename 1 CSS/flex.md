@@ -7,8 +7,8 @@
     display: inline-flex;
 
 ## 基本概念介绍
-采用Flex布局的元素，称为Flex容器（flex container），简称"容器"。
-它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称"项目"。
+采用Flex布局的元素，称为flex container，简称"容器"。
+它的所有子元素自动成为容器成员，称为flex item，简称"项目"。
 
 ## 容器属性介绍
 
