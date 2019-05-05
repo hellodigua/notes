@@ -10,6 +10,7 @@ alias gau='git add --update'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
+# 删除已合并分支
 alias gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
 alias gbl='git blame -b -w'
 alias gbnm='git branch --no-merged'
@@ -86,5 +87,7 @@ alias gmd="git merge develop"
 alias grh="git reset HEAD"
 # 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
 alias grhh="git reset HEAD --hard"
-#
+# 合并某个commit到当前分支
 alias gcp="git cherry-pick"
+# 将当前commit修改合并至上一个commit
+git commit -a -amend
