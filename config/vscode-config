@@ -1,0 +1,151 @@
+{
+  "editor.tabSize": 2, // 一个 tab 等于 2 个空格
+  "editor.insertSpaces": true, // 按 tab 等于插入空格
+  "files.encoding": "utf8", // 默认文件编码
+  "files.eol": "\n", // 换行符为 LF
+  "editor.renderWhitespace": "boundary", // 显示隐藏字符
+  "files.trimTrailingWhitespace": true, // 自动删除多余的空格
+  "files.insertFinalNewline": true, // 尾部插入新行
+  "workbench.startupEditor": "welcomePage",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontSize": 14,
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "indent_handlebars": true, // e.g. {{#foo}}, {{/foo}}
+      "wrap_attributes": "force-aligned" // Wrap attributes to new lines [auto|force|force-aligned|force-expand-multiline] ["auto"]
+    }
+  },
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    }
+  ],
+  "files.associations": {
+    "*.html": "html",
+    "*.js": "javascript",
+    "*.wxs": "javascript",
+    "*.vue": "vue",
+    "*.wxml": "html",
+    "*.axml": "html",
+    "*.ttml": "html",
+    "*.wxss": "css",
+    "*.acss": "css",
+    "*.wpy": "vue"
+  },
+  "editor.wordWrap": "on",
+  "git.enableSmartCommit": true,
+  "html.format.wrapLineLength": 0,
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "html.format.indentHandlebars": true,
+  "html.format.wrapAttributes": "force-aligned",
+  "vetur.validation.template": false,
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": true,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": true,
+    "suppressShowKeyBindingsNotice": true,
+    "suppressUpdateNotice": true,
+    "suppressWelcomeNotice": false
+  },
+  "window.zoomLevel": 0,
+  "explorer.confirmDragAndDrop": false,
+  "emmet.triggerExpansionOnTab": true,
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#f4f4f4"
+  },
+  "gitlens.keymap": "alternate",
+  "gitlens.historyExplorer.enabled": true,
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**",
+    "**/lib/**"
+  ],
+  "todohighlight.isEnable": true,
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.php",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.vue"
+  ],
+  // 用来处理路径引入标签提示的
+  "path-intellisense.mappings": {},
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  // "workbench.colorTheme": "Dark+ (default dark)",
+  "todohighlight.keywords": [
+    "DEBUG:",
+    "REVIEW:",
+    {
+      "text": "NOTE:",
+      "color": "#ff0000",
+      "backgroundColor": "yellow",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "HACK:",
+      "color": "#000",
+      "isWholeLine": false,
+    }
+  ],
+  "sync.gist": "fd86d3c34a9716c592bc317f50804154",
+  "javascript.validate.enable": false,
+  "gitlens.views.fileHistory.enabled": true,
+  "gitlens.views.lineHistory.enabled": true,
+  "extensions.ignoreRecommendations": false,
+  "window.restoreFullscreen": true,
+  "editor.formatOnSave": true,
+  "jest.showCoverageOnLoad": true,
+  "cSpell.userWords": [
+    "Funs",
+    "Promisify",
+    "codecov",
+    "commitlint",
+    "debounced",
+    "dxdesign",
+    "gitlab",
+    "openapi",
+    "qrcode",
+    "readonly",
+    "weapp"
+  ],
+  // 背景插件
+  "background.enabled": false,
+  "background.useDefault": false,
+  "background.customImages": [
+    "file:///Users/digua/Pictures/xyql.gif"
+  ],
+  "background.style": {
+    "pointer-events": "none",
+    "position": "absolute",
+    "top": "0",
+    "right": 0,
+    "z-index": "99999",
+    "background-size": "cover",
+    "opacity": 0.01
+  },
+  "eslint.autoFixOnSave": true
+}
