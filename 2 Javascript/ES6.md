@@ -88,7 +88,7 @@ let实际上为JavaScript新增了块级作用域。
         }
 
     块级作用域内声明的函数类似于let，对作用域之外没有影响
-    
+
 ### do
 
 本质上，块级作用域是一个语句，将多个操作封装在一起，没有返回值
@@ -97,7 +97,7 @@ let实际上为JavaScript新增了块级作用域。
       let t = f();
       t = t * t + 1;
     }
-    
+
 上面代码中，块级作用域将两个语句封装在一起。但是，在块级作用域以外，没有办法得到t的值，因为块级作用域不返回值，除非t是全局变量。
 
 do表达式的作用是，使得块级作用域可以变为表达式，也就是说可以返回值
@@ -121,10 +121,10 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
     // 如果在Node的REPL环境，可以写成global.a
     // 或者采用通用方法，写成this.a
     window.a // 1
-    
+
     let b = 1;
     window.b // undefined
-    
+
 上面代码中，全局变量a由var命令声明，所以它是顶层对象的属性；全局变量b由let命令声明，所以它不是顶层对象的属性，返回undefined。
 
 ## 变量的解构赋值
@@ -134,7 +134,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
 - 基本用法
 
         let [a, b, c] = [1, 2, 3];
-    
+
 上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。
 如果解构不成功，变量的值就等于undefined。
 
@@ -144,7 +144,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
 
     let [foo = true] = [];
     foo // true
-    
+
     let [x, y = 'b'] = ['a']; // x='a', y='b'
     let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
 
@@ -159,7 +159,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
     let { bar, foo } = { foo: "aaa", bar: "bbb" };
     foo // "aaa"
     bar // "bbb"
-    
+
     let { baz } = { foo: "aaa", bar: "bbb" };
     baz // undefined
 
@@ -167,7 +167,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
 
     var { foo: baz } = { foo: 'aaa', bar: 'bbb' };
     baz // "aaa"
-    
+
     let obj = { first: 'hello', last: 'world' };
     let { first: f, last: l } = obj;
     f // 'hello'
@@ -211,7 +211,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
 
         let x = 1;
         let y = 2;
-        
+
         [x, y] = [y, x];
 
 - 从函数返回多个值
@@ -223,7 +223,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
           return [1, 2, 3];
         }
         let [a, b, c] = example();
-        
+
         // 返回一个对象
         function example() {
           return {
@@ -240,7 +240,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
         // 参数是一组有次序的值
         function f([x, y, z]) { ... }
         f([1, 2, 3]);
-        
+
         // 参数是一组无次序的值
         function f({x, y, z}) { ... }
         f({z: 3, y: 2, x: 1});
@@ -252,9 +252,9 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
           status: "OK",
           data: [867, 5309]
         };
-        
+
         let { id, status, data: number } = jsonData;
-        
+
         console.log(id, status, number);
         // 42, "OK", [867, 5309]
 
@@ -278,27 +278,27 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
 
 任何部署了Iterator接口的对象，都可以用for...of循环遍历。Map结构原生支持Iterator接口，配合变量的解构赋值，获取键名和键值就非常方便。
 
-        var map = new Map();
-        map.set('first', 'hello');
-        map.set('second', 'world');
-        
-        for (let [key, value] of map) {
-          console.log(key + " is " + value);
-        }
-        // first is hello
-        // second is world
+  var map = new Map();
+  map.set('first', 'hello');
+  map.set('second', 'world');
+
+  for (let [key, value] of map) {
+    console.log(key + " is " + value);
+  }
+  // first is hello
+  // second is world
 
 如果只想获取键名，或者只想获取键值，可以写成下面这样。
 
-        // 获取键名
-        for (let [key] of map) {
-          // ...
-        }
-        
-        // 获取键值
-        for (let [,value] of map) {
-          // ...
-        }
+  // 获取键名
+  for (let [key] of map) {
+    // ...
+  }
+
+  // 获取键值
+  for (let [,value] of map) {
+    // ...
+  }
 
 - 输入模块的指定方法
 
