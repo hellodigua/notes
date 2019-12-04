@@ -1,242 +1,246 @@
-## 基本操作 
+## 基本操作
 
-mongod --port 端口号 // 无密码时连接 
-mongo mongo地址/数据库名 -u 用户名 -p 密码 // 有密码的情况下连接数据库 
+mongod --port 端口号 // 无密码时连接
+mongo mongo地址/数据库名 -u 用户名 -p 密码 // 有密码的情况下连接数据库
 
-exit // 退出 
+exit // 退出
 
-sudo service mongod start // 开启mongo服务 
-sudo service mongod stop // 停止mongo服务 
-sudo service mongod restart // 重启mongo服务 
+sudo service mongod start // 开启mongo服务
+sudo service mongod stop // 停止mongo服务
+sudo service mongod restart // 重启mongo服务
 
-mongo --host mongo地址 数据库名 --eval "db.dropDatabase()" // 删除数据库 
+mongo --host mongo地址 数据库名 --eval "db.dropDatabase()" // 删除数据库
 
-## 安装 
+## 安装
 
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition 
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition
 
-跟着上面的步骤走，执行完以后 
+跟着上面的步骤走，执行完以后
 
-sudo service mongod start 
+sudo service mongod start
 
-然后输入mongo试试能否连接成功 
+然后输入mongo试试能否连接成功
 
 
-## 修改mongod端口 
+## 修改mongod端口
 
-sudo vi /etc/mongod.conf 
+sudo vi /etc/mongod.conf
 
-找到 # network interfaces 
+找到 # network interfaces
 
-修改端口后保存退出，然后重启mongo服务 
+修改端口后保存退出，然后重启mongo服务
 
-mongo --port 端口号 
+mongo --port 端口号
 
 
-## 数据库迁移（整库迁移） 
+## 数据库迁移（整库迁移）
 
-- 备份本地数据库 
+- 备份本地数据库
 
-mongodump -h mongo地址 -d 数据库名 -o 导出文件夹（导出的文件夹是命令行当前所在目录） 
+mongodump -h mongo地址 -d 数据库名 -o 导出文件夹（导出的文件夹是命令行当前所在目录）
 
-// 无密码 
-mongodump -h 127.0.0.1:27017 -d billing -o 1187www 
+// 无密码
+mongodump -h 127.0.0.1:27017 -d billing -o 1187www
 
-// 有密码 
-mongodump -h 127.0.0.1:27017 -d billing -u 备份用户 -p 密码 -o 1187www 
+// 有密码
+mongodump -h 127.0.0.1:27017 -d billing -u 备份用户 -p 密码 -o 1187www
 
-- 备份成功之后打包 
+- 备份成功之后打包
 
-tar zcvf billing.tar.gz billing 
+tar zcvf billing.tar.gz billing
 
-- 上传文件到服务器 
+- 上传文件到服务器
 
-scp -P 服务器端口号 本地目录位置 服务器地址:服务器路径 
+scp -P 服务器端口号 本地目录位置 服务器地址:服务器路径
 
-scp -P 11875 ./billing.tar.gz digua@173.254.200.100:/home/digua/dbbackup 
+scp -P 11875 ./billing.tar.gz digua@173.254.200.100:/home/digua/dbbackup
 
-- 从服务器下载文件（备份数据在服务器的情况） 
-scp -P 11875 digua@200.245.122.33:/home/digua/backup/xxxx.tar.gz 
+- 从服务器下载文件（备份数据在服务器的情况）
+scp -P 11875 digua@200.245.122.33:/home/digua/backup/xxxx.tar.gz
 
-- 解压压缩包 
+- 解压压缩包
 
-tar xvf billing.tar.gz 
+tar xvf billing.tar.gz
 
-- 导入数据库文件到mongo 
+- 导入数据库文件到mongo
 
-mongorestore --host 数据库地址 -d 数据库名 数据库还原目录 
+mongorestore --host 数据库地址 -d 数据库名 数据库还原目录
 
-// 无密码 
-(我是直接在还原目录的上层操作的) 
-mongorestore --host 127.0.0.1:29572 -d billing ./billing 
+// 无密码
+(我是直接在还原目录的上层操作的)
+mongorestore --host 127.0.0.1:29572 -d billing ./billing
 
-// 有密码 
-mongorestore --host 127.0.0.1:29572 -d billing -u 用户名 -p 密码 还原目录 
+// 有密码
+mongorestore --host 127.0.0.1:29572 -d billing -u 用户名 -p 密码 还原目录
 
-OK. 
+OK.
 
-## 数据表迁移（单表迁移）（无权限情况） 
+也可以参考下文：
 
-- 本地导出数据 
+https://www.runoob.com/mongodb/mongodb-mongodump-mongorestore.html
 
-mongoexport -d 数据库名 -c 数据库表 -o ./表名.json 
+## 数据表迁移（单表迁移）（无权限情况）
 
-- 传输文件到服务器 
+- 本地导出数据
 
-- 导入数据表到mongo 
+mongoexport -d 数据库名 -c 数据库表 -o ./表名.json
 
-mongoimport --host 数据库地址 -d 数据库名 -c 数据库表 ./表名.json 
+- 传输文件到服务器
 
-OK. 
+- 导入数据表到mongo
 
-## mongo权限 
+mongoimport --host 数据库地址 -d 数据库名 -c 数据库表 ./表名.json
 
-### 给mongo设置超级权限 
+OK.
 
-进入命令行 
+## mongo权限
 
-use admin 
+### 给mongo设置超级权限
 
-db.createUser({user: 'digua', pwd: 'digua123', roles: [{role: 'userAdminAnyDatabase', db: 'admin'}]}) 
+进入命令行
 
-### 给数据库设置独立用户权限 
+use admin
 
-use admin 
+db.createUser({user: 'digua', pwd: 'digua123', roles: [{role: 'userAdminAnyDatabase', db: 'admin'}]})
 
-// 授权操作是必须的 
-db.auth('digua', 'digua233') 
+### 给数据库设置独立用户权限
 
-// 重点，切换到目标数据库再操作 
-use 目标数据库 
+use admin
 
-// 设置读写用户 
-db.createUser({user: 'digua_billing', pwd: 'diguabilling233', roles: [{role: 'readWrite', db: 'billing'}]}) 
+// 授权操作是必须的
+db.auth('digua', 'digua233')
 
-// 设置备份用户 
-db.createUser({user: 'digua_billing_back', pwd: 'diguabilling333', roles: [{role: 'read', db: 'billing'}]}) 
+// 重点，切换到目标数据库再操作
+use 目标数据库
 
-### 开启用户验证模式 
+// 设置读写用户
+db.createUser({user: 'digua_billing', pwd: 'diguabilling233', roles: [{role: 'readWrite', db: 'billing'}]})
 
-sudo vi /etc/mongod.conf 
+// 设置备份用户
+db.createUser({user: 'digua_billing_back', pwd: 'diguabilling333', roles: [{role: 'read', db: 'billing'}]})
 
-找到 #security: 
+### 开启用户验证模式
 
-去掉注释，改为如下，然后保存，重启即可： 
+sudo vi /etc/mongod.conf
 
-security: 
-  authorization: 'enabled' 
+找到 #security:
 
-## 数据库定时备份 
+去掉注释，改为如下，然后保存，重启即可：
 
-### 创建上传到七牛的脚本 
+security:
+  authorization: 'enabled'
 
-cd ~/tasks 
+## 数据库定时备份
 
-npm install qiniu 
+### 创建上传到七牛的脚本
 
-vi upload.js 
+cd ~/tasks
 
-``` 
-var qiniu = require("qiniu"); 
+npm install qiniu
 
-var accessKey = '你的ak'; // ak 
-var secretKey = '你的sk'; // sk 
-var mac = new qiniu.auth.digest.Mac(accessKey, secretKey); 
+vi upload.js
 
-var options = { 
-  scope: '你的空间名', //要上传的空间名 
-}; 
-var putPolicy = new qiniu.rs.PutPolicy(options); 
-var uploadToken = putPolicy.uploadToken(mac); 
+```
+var qiniu = require("qiniu");
 
-var config = new qiniu.conf.Config(); 
+var accessKey = '你的ak'; // ak
+var secretKey = '你的sk'; // sk
+var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
 
-config.zone = qiniu.zone.Zone_z2; // 华南机房 
-// 是否使用https域名 
-//config.useHttpsDomain = true; 
-// 上传是否使用cdn加速 
-//config.useCdnDomain = true; 
+var options = {
+  scope: '你的空间名', //要上传的空间名
+};
+var putPolicy = new qiniu.rs.PutPolicy(options);
+var uploadToken = putPolicy.uploadToken(mac);
 
-// 本地的上传目录和文件名 
-var parts = process.env.NODE_ENV.split('@'); 
-var file = parts[1] + '.tar.gz'; 
-var filePath = parts[0]+ '/' + file; 
+var config = new qiniu.conf.Config();
 
-var localFile = filePath; 
-var formUploader = new qiniu.form_up.FormUploader(config); 
-var putExtra = new qiniu.form_up.PutExtra(); 
+config.zone = qiniu.zone.Zone_z2; // 华南机房
+// 是否使用https域名
+//config.useHttpsDomain = true;
+// 上传是否使用cdn加速
+//config.useCdnDomain = true;
 
-// 上传到七牛后的命名 
-var key=file; 
+// 本地的上传目录和文件名
+var parts = process.env.NODE_ENV.split('@');
+var file = parts[1] + '.tar.gz';
+var filePath = parts[0]+ '/' + file;
 
-// 文件上传（表单方式） 
-formUploader.putFile(uploadToken, key, localFile, putExtra, function(respErr, respBody, respInfo) { 
-  if (respErr) { 
-    console.log(respErr); 
-  } 
-  if (respInfo.statusCode == 200) { 
-    console.log(respBody); 
-  } else { 
-    console.log(respInfo.statusCode); 
-    console.log(respBody); 
-  } 
-}); 
-``` 
+var localFile = filePath;
+var formUploader = new qiniu.form_up.FormUploader(config);
+var putExtra = new qiniu.form_up.PutExtra();
 
-### 创建备份脚本 
+// 上传到七牛后的命名
+var key=file;
 
-在用户根目录 
-创建 ~/backup/billing 
-然后在tasks里面 
-vi billing.backup.sh 
+// 文件上传（表单方式）
+formUploader.putFile(uploadToken, key, localFile, putExtra, function(respErr, respBody, respInfo) {
+  if (respErr) {
+    console.log(respErr);
+  }
+  if (respInfo.statusCode == 200) {
+    console.log(respBody);
+  } else {
+    console.log(respInfo.statusCode);
+    console.log(respBody);
+  }
+});
+```
 
-``` 
-#!/bin/sh 
+### 创建备份脚本
 
-backUpFolder=/home/digua/backup/billing 
-date_now=`date +%Y_%m_%d_%H_%M` 
-backFileName=billing_$date_now 
+在用户根目录
+创建 ~/backup/billing
+然后在tasks里面
+vi billing.backup.sh
 
-cd $backUpFolder 
-mkdir -p $backFileName 
+```
+#!/bin/sh
 
-mongodump -h 127.0.0.1:端口号 -d 数据库 -u 备份帐号 -p 密码 -o $backFileName 
+backUpFolder=/home/digua/backup/billing
+date_now=`date +%Y_%m_%d_%H_%M`
+backFileName=billing_$date_now
 
-tar zcvf $backFileName.tar.gz $backFileName 
+cd $backUpFolder
+mkdir -p $backFileName
 
-rm -rf $backFileName 
+mongodump -h 127.0.0.1:端口号 -d 数据库 -u 备份帐号 -p 密码 -o $backFileName
 
-NODE_ENV=$backUpFolder@$backFileName node /home/digua/tasks/upload.js 
-``` 
+tar zcvf $backFileName.tar.gz $backFileName
 
-大概讲解一下： 
-第一行，声明是可执行脚本，之后三行，分别定义备份目录，当前日期，备份名 
+rm -rf $backFileName
 
-移动到备份目录，创建备份名的文件夹 
+NODE_ENV=$backUpFolder@$backFileName node /home/digua/tasks/upload.js
+```
 
-进行备份指定数据库操作 
+大概讲解一下：
+第一行，声明是可执行脚本，之后三行，分别定义备份目录，当前日期，备份名
 
-压缩备份好的数据，删除掉备份好的临时目录里的数据 
+移动到备份目录，创建备份名的文件夹
 
-最后一行执行七牛的上传脚本 
+进行备份指定数据库操作
 
-// 测试一下脚本 
-sudo sh /home/digua/tasks/billing.backup.sh 
+压缩备份好的数据，删除掉备份好的临时目录里的数据
 
-### 创建定时任务 
+最后一行执行七牛的上传脚本
 
-// 启动系统定时任务设定 
-crontab -e 
+// 测试一下脚本
+sudo sh /home/digua/tasks/billing.backup.sh
 
-输入2并回车 
+### 创建定时任务
 
-然后创建定时任务了： 
-分别是凌晨3点，以及中午12点各执行一次脚本 
-00 3 * * * sh /home/digua/tasks/billing.backup.sh 
-00 12 * * * sh /home/digua/tasks/billing.backup.sh 
+// 启动系统定时任务设定
+crontab -e
 
-用的是nano编辑器，保存操作： 
+输入2并回车
 
-ctrl+x 
-按y 
+然后创建定时任务了：
+分别是凌晨3点，以及中午12点各执行一次脚本
+00 3 * * * sh /home/digua/tasks/billing.backup.sh
+00 12 * * * sh /home/digua/tasks/billing.backup.sh
+
+用的是nano编辑器，保存操作：
+
+ctrl+x
+按y
 回车
