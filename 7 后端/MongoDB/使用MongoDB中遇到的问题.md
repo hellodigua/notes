@@ -30,14 +30,14 @@ systemctl stop mongod
 # mongodb磁盘空间不足
 
     http://blog.csdn.net/csfreebird/article/details/17023947
-    
+
 总之最后的解决办法是：
 
     cd /usr/bin
     ./mongod --smallfiles
-    
+
 当然了，最后一步命令应替换为
 
     nohup ./mongod --smaillfiles &
- 
+
  它的作用是让程序在终端关闭之后仍然能够运行

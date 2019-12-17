@@ -1,9 +1,5 @@
 # nichijou
 
-## 代码托管
-
-Github
-
 ## 构建流程
 
 1. 本地开发代码，推送到github仓库

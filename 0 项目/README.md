@@ -22,6 +22,7 @@ about-me 3001 - digua.pro
 nichijou 3002 - nichijou.digua.pro
 
 ### 后端服务
-nichijou-server 8001 - nichi.digua.pro
+billing-server 8001 - billing-server.digua.me
+nichijou-server 8002 - nichi.digua.pro
 
 
