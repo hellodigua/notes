@@ -1,6 +1,6 @@
-# Docker安装和使用
+# Docker 安装和使用
 
-## 安装Docker
+## 安装 Docker
 
 - mac
 
@@ -29,10 +29,7 @@ sudo sh get-docker.sh --mirror Aliyun
 
 ```json
 {
-  "registry-mirrors": [
-    "https://dockerhub.azk8s.cn",
-    "https://reg-mirror.qiniu.com"
-  ]
+  "registry-mirrors": ["https://dockerhub.azk8s.cn", "https://reg-mirror.qiniu.com"]
 }
 ```
 
@@ -43,11 +40,11 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-## 使用Docker
+## 使用 Docker
 
-整体步骤分为4步：
+整体步骤分为 4 步：
 
-1. 写一个Dockerfile
+1. 写一个 Dockerfile
 2. 打包镜像
 3. 根据镜像创建容器
 4. 启动容器
@@ -62,14 +59,14 @@ https://yeasy.gitbooks.io/docker_practice/image/build.html
 
 ### 打包镜像
 
-使用 docker image build 来将Dockerfile打包成镜像
+使用 docker image build 来将 Dockerfile 打包成镜像
 
 ```
 cd hello-docker/ # 进入刚刚的目录
 docker image build ./ -t hello-docker:1.0.0 # 打包镜像
 ```
 
-docker image build ./ -t hello-docker:1.0.0的意思是：基于路径./（当前路径）打包一个镜像，镜像的名字是hello-docker，版本号是1.0.0。该命令会自动寻找Dockerfile来打包出一个镜像
+docker image build ./ -t hello-docker:1.0.0 的意思是：基于路径./（当前路径）打包一个镜像，镜像的名字是 hello-docker，版本号是 1.0.0。该命令会自动寻找 Dockerfile 来打包出一个镜像
 
 ### 根据镜像创建容器并启动
 
@@ -77,14 +74,14 @@ docker image build ./ -t hello-docker:1.0.0的意思是：基于路径./（当�
 docker run -it -p 2333:3001 hello-docker:1.0.0
 ```
 
-我们使用docker run 来创建并启动基于hello-docker:1.0.0镜像的一个容器，使用-p来指定端口绑定——将容器中的3001端口绑定在宿主机的2333端口
+我们使用 docker run 来创建并启动基于 hello-docker:1.0.0 镜像的一个容器，使用-p 来指定端口绑定——将容器中的 3001 端口绑定在宿主机的 2333 端口
 
-启动后，就能通过访问本机的2333端口来达到访问容器内3001端口的效果了
+启动后，就能通过访问本机的 2333 端口来达到访问容器内 3001 端口的效果了
 
 ## 其他命令
 
 - 列出本地所有容器
-docker image ls
+  docker image ls
 
 - 查看当前运行的容器
-docker container ls
+  docker container ls

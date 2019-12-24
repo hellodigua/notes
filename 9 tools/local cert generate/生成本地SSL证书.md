@@ -8,8 +8,8 @@
 
 其他可选信息可忽略。
 
-rootCA.key RSA-2048密钥
-rootCA.pem 根SSL证书
+rootCA.key RSA-2048 密钥
+rootCA.pem 根 SSL 证书
 
 ## Step 2
 
@@ -21,8 +21,6 @@ rootCA.pem 根SSL证书
 sh createSelfSigned.sh
 ```
 
-OK生成完毕
-
+OK 生成完毕
 
 https://juejin.im/post/5a6db896518825732d7fd8e0
-

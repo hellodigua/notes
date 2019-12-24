@@ -1,4 +1,4 @@
-## 获取并自动更新SSL证书
+## 获取并自动更新 SSL 证书
 
 acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书.
 安装：

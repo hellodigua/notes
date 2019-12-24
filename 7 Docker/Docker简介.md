@@ -1,16 +1,16 @@
-# Docker简介
+# Docker 简介
 
 [Docker - 从入门到实践](https://yeasy.gitbooks.io/docker_practice/)
 
 ## 简介
 
-### 什么是Docker
+### 什么是 Docker
 
-Docker是一种操作系统层面的虚拟化技术。
+Docker 是一种操作系统层面的虚拟化技术。
 
 由于由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。
 
-### 为什么要用Docker
+### 为什么要用 Docker
 
 Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。
 

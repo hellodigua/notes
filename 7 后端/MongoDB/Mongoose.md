@@ -2,7 +2,7 @@
 
 ## 介绍
 
-一般我们不直接用MongoDB的函数来操作MongoDB数据库，Mongose就是一套操作MongoDB数据库的接口.
+一般我们不直接用 MongoDB 的函数来操作 MongoDB 数据库，Mongose 就是一套操作 MongoDB 数据库的接口.
 
 Mongoose 增查改删学习笔记： https://segmentfault.com/a/1190000008245062
 Mongoose 参考手册： https://cnodejs.org/topic/548e54d157fd3ae46b233502
@@ -17,11 +17,11 @@ Mongoose 文档： http://www.nodeclass.com/api/mongoose.html#quick_start
 
 - Model
 
-由Schema构造生成的模型，除了Schema定义的数据库骨架以外，还具有数据库操作的行为，类似于管理数据库属性、行为的类
+由 Schema 构造生成的模型，除了 Schema 定义的数据库骨架以外，还具有数据库操作的行为，类似于管理数据库属性、行为的类
 
 - Entity
 
-由Model创建的实体，使用save方法保存数据，Model和Entity都有能影响数据库的操作，但Model比Entity更具操作性
+由 Model 创建的实体，使用 save 方法保存数据，Model 和 Entity 都有能影响数据库的操作，但 Model 比 Entity 更具操作性
 
 ## API
 
@@ -49,12 +49,11 @@ model.remove(conditions, callback)
 
 ### where
 
-
 ## 实例
 
-db.admin.find({}) 查询当前数据库下面 admin文档的所有内容
+db.admin.find({}) 查询当前数据库下面 admin 文档的所有内容
 
-db.admin.remove({}) 删除admin下面所有内容
+db.admin.remove({}) 删除 admin 下面所有内容
 
 db.admin.insert({})
 插入新的值
@@ -70,7 +69,7 @@ db.admin.insert({})
     "$pop" {"lists": 1} } 1表示从数组末尾删除一位  -1表示从数组前面删除一位
     "$pull" {"lists": 1} } 1表示从lists 里面匹配到1 然后删除
 
-第三个参数upsert
+第三个参数 upsert
 表示如果能成功更新 则正常更新 否则 创建新的
 
 第四个参数 more

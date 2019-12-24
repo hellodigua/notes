@@ -1,12 +1,12 @@
-# vue实现全局变量
+# vue 实现全局变量
 
-- 方法1
+- 方法 1
 
 使用特定模块来组织全局变量，需要引入的地方导入该模块
 
-- 方法2
+- 方法 2
 
-全局变量挂载到Vue.prototype里
+全局变量挂载到 Vue.prototype 里
 
 import sth from './sth'
 Vue.prototype.GLOBAL = sth
@@ -24,4 +24,3 @@ exports.install = function (Vue, options) {
 import xxxx from './commons/xxxx'
 Vue.use(xxxx);
 ```
-

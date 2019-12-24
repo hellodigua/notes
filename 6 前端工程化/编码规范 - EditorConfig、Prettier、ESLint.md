@@ -1,8 +1,8 @@
 # 编码规范
 
-以下如有配置，均基于VSCode。
+以下如有配置，均基于 VSCode。
 
-[风格与品位--3个前端代码规范的工具](https://mp.weixin.qq.com/s/C3w_d5uAU9MQtn5tS6Lrpg)
+[风格与品位--3 个前端代码规范的工具](https://mp.weixin.qq.com/s/C3w_d5uAU9MQtn5tS6Lrpg)
 [组件库项目工程化的两个尝试](https://www.yuque.com/xuemuyang/zsevtt/zubg5g#34827fd5)
 
 ## EditorConfig
@@ -17,8 +17,8 @@
 
 特点：保存文件时才会被整理格式（起作用于保存代码之后）
 
-Q: 有了prettier，还用editorConfig吗？
-A: 使用。一个是编辑器风格，一个是项目风格，作用不同。editorConfig 起作用于敲代码之前，prettier 起作用于保存代码之后；可以自己试验它们的不同，如以下为 editorConfig 空格设置为4，prettier 空格设置为2的场景，每次回车变成4格，每次保存又变成2格。
+Q: 有了 prettier，还用 editorConfig 吗？
+A: 使用。一个是编辑器风格，一个是项目风格，作用不同。editorConfig 起作用于敲代码之前，prettier 起作用于保存代码之后；可以自己试验它们的不同，如以下为 editorConfig 空格设置为 4，prettier 空格设置为 2 的场景，每次回车变成 4 格，每次保存又变成 2 格。
 
 ## ESLint
 
@@ -31,7 +31,7 @@ A: 使用。一个是编辑器风格，一个是项目风格，作用不同。ed
 
 ## commitizen
 
-是什么：检查commit message 是否符合规范
+是什么：检查 commit message 是否符合规范
 
 ## husky
 
@@ -66,16 +66,14 @@ trim_trailing_whitespace = false
 
 ## Prettier
 
-- 全局安装prettier
+- 全局安装 prettier
 
 ```
 npm i -g prettier
 ```
 
-- Vscode安装插件 Prettier-Code formatter
+- Vscode 安装插件 Prettier-Code formatter
 
-同时配置setting.json中： formatOnSave: true
+同时配置 setting.json 中： formatOnSave: true
 
 - 项目配置 .prettierrc 优先级最高，会覆盖默认配置
-
-

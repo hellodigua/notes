@@ -1,15 +1,15 @@
 ## 基本操作
 
 mongod --port 端口号 // 无密码时连接
-mongo mongo地址/数据库名 -u 用户名 -p 密码 // 有密码的情况下连接数据库
+mongo mongo 地址/数据库名 -u 用户名 -p 密码 // 有密码的情况下连接数据库
 
 exit // 退出
 
-sudo service mongod start // 开启mongo服务
-sudo service mongod stop // 停止mongo服务
-sudo service mongod restart // 重启mongo服务
+sudo service mongod start // 开启 mongo 服务
+sudo service mongod stop // 停止 mongo 服务
+sudo service mongod restart // 重启 mongo 服务
 
-mongo --host mongo地址 数据库名 --eval "db.dropDatabase()" // 删除数据库
+mongo --host mongo 地址 数据库名 --eval "db.dropDatabase()" // 删除数据库
 
 ## 安装
 
@@ -19,25 +19,23 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#install-mong
 
 sudo service mongod start
 
-然后输入mongo试试能否连接成功
+然后输入 mongo 试试能否连接成功
 
-
-## 修改mongod端口
+## 修改 mongod 端口
 
 sudo vi /etc/mongod.conf
 
 找到 # network interfaces
 
-修改端口后保存退出，然后重启mongo服务
+修改端口后保存退出，然后重启 mongo 服务
 
 mongo --port 端口号
-
 
 ## 数据库迁移（整库迁移）
 
 - 备份本地数据库
 
-mongodump -h mongo地址 -d 数据库名 -o 导出文件夹（导出的文件夹是命令行当前所在目录）
+mongodump -h mongo 地址 -d 数据库名 -o 导出文件夹（导出的文件夹是命令行当前所在目录）
 
 // 无密码
 mongodump -h 127.0.0.1:27017 -d billing -o 1187www
@@ -56,13 +54,13 @@ scp -P 服务器端口号 本地目录位置 服务器地址:服务器路径
 scp -P 11875 ./billing.tar.gz digua@173.254.200.100:/home/digua/dbbackup
 
 - 从服务器下载文件（备份数据在服务器的情况）
-scp -P 11875 digua@200.245.122.33:/home/digua/backup/xxxx.tar.gz
+  scp -P 11875 digua@200.245.122.33:/home/digua/backup/xxxx.tar.gz
 
 - 解压压缩包
 
 tar xvf billing.tar.gz
 
-- 导入数据库文件到mongo
+- 导入数据库文件到 mongo
 
 mongorestore --host 数据库地址 -d 数据库名 数据库还原目录
 
@@ -87,15 +85,15 @@ mongoexport -d 数据库名 -c 数据库表 -o ./表名.json
 
 - 传输文件到服务器
 
-- 导入数据表到mongo
+- 导入数据表到 mongo
 
 mongoimport --host 数据库地址 -d 数据库名 -c 数据库表 ./表名.json
 
 OK.
 
-## mongo权限
+## mongo 权限
 
-### 给mongo设置超级权限
+### 给 mongo 设置超级权限
 
 进入命令行
 
@@ -128,7 +126,7 @@ sudo vi /etc/mongod.conf
 去掉注释，改为如下，然后保存，重启即可：
 
 security:
-  authorization: 'enabled'
+authorization: 'enabled'
 
 ## 数据库定时备份
 
@@ -191,7 +189,7 @@ formUploader.putFile(uploadToken, key, localFile, putExtra, function(respErr, re
 
 在用户根目录
 创建 ~/backup/billing
-然后在tasks里面
+然后在 tasks 里面
 vi billing.backup.sh
 
 ```
@@ -232,15 +230,15 @@ sudo sh /home/digua/tasks/billing.backup.sh
 // 启动系统定时任务设定
 crontab -e
 
-输入2并回车
+输入 2 并回车
 
 然后创建定时任务了：
-分别是凌晨3点，以及中午12点各执行一次脚本
-00 3 * * * sh /home/digua/tasks/billing.backup.sh
-00 12 * * * sh /home/digua/tasks/billing.backup.sh
+分别是凌晨 3 点，以及中午 12 点各执行一次脚本
+00 3 \* \* _ sh /home/digua/tasks/billing.backup.sh
+00 12 _ \* \* sh /home/digua/tasks/billing.backup.sh
 
-用的是nano编辑器，保存操作：
+用的是 nano 编辑器，保存操作：
 
 ctrl+x
-按y
+按 y
 回车

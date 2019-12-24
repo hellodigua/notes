@@ -6,68 +6,67 @@
 
 # 前言
 
-## ES6是什么
+## ES6 是什么
 
-- ECMAScript 6.0（简称ES6）是JavaScript语言的下一代标准，在2015年6月正式发布。
-- ECMAScript和JavaScript的关系是，前者是后者的规格，后者是前者的一种实现。
-- ES6的大部分特性，主流浏览器大部分已经实现。
-- Node.js是JavaScript语言的服务器运行环境，对ES6的支持度比浏览器更高。
+- ECMAScript 6.0（简称 ES6）是 JavaScript 语言的下一代标准，在 2015 年 6 月正式发布。
+- ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现。
+- ES6 的大部分特性，主流浏览器大部分已经实现。
+- Node.js 是 JavaScript 语言的服务器运行环境，对 ES6 的支持度比浏览器更高。
 
 ## babel
-Babel是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。这意味着，你可以用ES6的方式编写程序，又不用担心现有环境是否支持。
 
+Babel 是一个广泛使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在现有环境执行。这意味着，你可以用 ES6 的方式编写程序，又不用担心现有环境是否支持。
 
 # 基础
 
 ## 变量声明
 
-ES5只有两种声明变量的方法：var命令和function命令。ES6除了添加let和const命令，还有import命令和class命令。所以，ES6一共有6种声明变量的方法。
+ES5 只有两种声明变量的方法：var 命令和 function 命令。ES6 除了添加 let 和 const 命令，还有 import 命令和 class 命令。所以，ES6 一共有 6 种声明变量的方法。
 
 ### let
 
-le用于申明变量，它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。
+le 用于申明变量，它的用法类似于 var，但是所声明的变量，只在 let 命令所在的代码块内有效。
 
 - 特性： 不存在变量提升
 
-  var会发生"变量提升"现象，即变量可以在声明之前使用，值为undefined
-  let要求变量一定要在声明后使用，否则报错
+  var 会发生"变量提升"现象，即变量可以在声明之前使用，值为 undefined
+  let 要求变量一定要在声明后使用，否则报错
 
 - 特性： 暂时性死区
 
-  只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
-  ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
-  总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”
+  只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
+  ES6 明确规定，如果区块中存在 let 和 const 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+  总之，在代码块内，使用 let 命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”
 
         typeof x; // ReferenceError
         let x;
 
 - 特性： 不允许重复声明
 
-  let不允许在相同作用域内，重复声明同一个变量
+  let 不允许在相同作用域内，重复声明同一个变量
 
         function () {
           let a = 10; // 报错
           var a = 1;
         }
 
-
 ### const
 
-- const声明一个只读的常量。一旦声明，常量的值就不能改变。
-- const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。
-- const的作用域与let命令相同：只在声明所在的块级作用域内有效。
-- const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
-- const声明的常量，建议大写
+- const 声明一个只读的常量。一旦声明，常量的值就不能改变。
+- const 声明的变量不得改变值，这意味着，const 一旦声明变量，就必须立即初始化，不能留到以后赋值。
+- const 的作用域与 let 命令相同：只在声明所在的块级作用域内有效。
+- const 命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
+- const 声明的常量，建议大写
 
 ## 块级作用域
 
-ES5只有全局作用域和函数作用域，没有块级作用域，这带来很多不合理的场景。
+ES5 只有全局作用域和函数作用域，没有块级作用域，这带来很多不合理的场景。
 
-例子请看demo [http://es6.ruanyifeng.com/#docs/let#为什么需要块级作用域？](http://es6.ruanyifeng.com/#docs/let#为什么需要块级作用域？)
+例子请看 demo [http://es6.ruanyifeng.com/#docs/let#为什么需要块级作用域？](http://es6.ruanyifeng.com/#docs/let#为什么需要块级作用域？)
 
-let实际上为JavaScript新增了块级作用域。
+let 实际上为 JavaScript 新增了块级作用域。
 
-- ES6允许块级作用域的任意嵌套：
+- ES6 允许块级作用域的任意嵌套：
 
         {{{{{let insane = 'Hello World'}}}}}
         // 代码使用了一个五层的块级作用域。外层作用域无法读取内层作用域的变量。
@@ -87,7 +86,7 @@ let实际上为JavaScript新增了块级作用域。
           function f() {} // 不报错
         }
 
-    块级作用域内声明的函数类似于let，对作用域之外没有影响
+  块级作用域内声明的函数类似于 let，对作用域之外没有影响
 
 ### do
 
@@ -98,9 +97,9 @@ let实际上为JavaScript新增了块级作用域。
       t = t * t + 1;
     }
 
-上面代码中，块级作用域将两个语句封装在一起。但是，在块级作用域以外，没有办法得到t的值，因为块级作用域不返回值，除非t是全局变量。
+上面代码中，块级作用域将两个语句封装在一起。但是，在块级作用域以外，没有办法得到 t 的值，因为块级作用域不返回值，除非 t 是全局变量。
 
-do表达式的作用是，使得块级作用域可以变为表达式，也就是说可以返回值
+do 表达式的作用是，使得块级作用域可以变为表达式，也就是说可以返回值
 
     let x = do {
       let t = f();
@@ -110,12 +109,12 @@ do表达式的作用是，使得块级作用域可以变为表达式，也就是
 
 ### 顶层对象
 
-顶层对象，在浏览器环境指的是window对象，在Node指的是global对象。
+顶层对象，在浏览器环境指的是 window 对象，在 Node 指的是 global 对象。
 
-ES6中：
+ES6 中：
 
-var命令和function命令声明的全局变量，依旧是顶层对象的属性
-let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性
+var 命令和 function 命令声明的全局变量，依旧是顶层对象的属性
+let 命令、const 命令、class 命令声明的全局变量，不属于顶层对象的属性
 
     var a = 1;
     // 如果在Node的REPL环境，可以写成global.a
@@ -125,7 +124,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
     let b = 1;
     window.b // undefined
 
-上面代码中，全局变量a由var命令声明，所以它是顶层对象的属性；全局变量b由let命令声明，所以它不是顶层对象的属性，返回undefined。
+上面代码中，全局变量 a 由 var 命令声明，所以它是顶层对象的属性；全局变量 b 由 let 命令声明，所以它不是顶层对象的属性，返回 undefined。
 
 ## 变量的解构赋值
 
@@ -136,7 +135,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
         let [a, b, c] = [1, 2, 3];
 
 上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。
-如果解构不成功，变量的值就等于undefined。
+如果解构不成功，变量的值就等于 undefined。
 
 - 默认值
 
@@ -190,7 +189,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
     d // "l"
     e // "o"
 
-类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。
+类似数组的对象都有一个 length 属性，因此还可以对这个属性解构赋值。
 
     let {length : len} = 'hello';
     len // 5
@@ -245,7 +244,7 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
         function f({x, y, z}) { ... }
         f({z: 3, y: 2, x: 1});
 
-- 提取JSON数据
+- 提取 JSON 数据
 
         let jsonData = {
           id: 42,
@@ -272,33 +271,33 @@ let命令、const命令、class命令声明的全局变量，不属于顶层对�
           // ... do stuff
         };
 
-指定参数的默认值，就避免了在函数体内部再写var foo = config.foo || 'default foo';这样的语句。
+指定参数的默认值，就避免了在函数体内部再写 var foo = config.foo || 'default foo';这样的语句。
 
-- 遍历Map结构
+- 遍历 Map 结构
 
-任何部署了Iterator接口的对象，都可以用for...of循环遍历。Map结构原生支持Iterator接口，配合变量的解构赋值，获取键名和键值就非常方便。
+任何部署了 Iterator 接口的对象，都可以用 for...of 循环遍历。Map 结构原生支持 Iterator 接口，配合变量的解构赋值，获取键名和键值就非常方便。
 
-  var map = new Map();
-  map.set('first', 'hello');
-  map.set('second', 'world');
+var map = new Map();
+map.set('first', 'hello');
+map.set('second', 'world');
 
-  for (let [key, value] of map) {
-    console.log(key + " is " + value);
-  }
-  // first is hello
-  // second is world
+for (let [key, value] of map) {
+console.log(key + " is " + value);
+}
+// first is hello
+// second is world
 
 如果只想获取键名，或者只想获取键值，可以写成下面这样。
 
-  // 获取键名
-  for (let [key] of map) {
-    // ...
-  }
+// 获取键名
+for (let [key] of map) {
+// ...
+}
 
-  // 获取键值
-  for (let [,value] of map) {
-    // ...
-  }
+// 获取键值
+for (let [,value] of map) {
+// ...
+}
 
 - 输入模块的指定方法
 

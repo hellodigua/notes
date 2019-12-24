@@ -14,14 +14,12 @@ secret: digua323
 
 ## 构建流程
 
-1. 本地开发好代码，推送到github仓库
-2. 触发travis-ci进行构建打包
-3. 将打包代码推送到hostker
+1. 本地开发好代码，推送到 github 仓库
+2. 触发 travis-ci 进行构建打包
+3. 将打包代码推送到 hostker
 
 ## tips
 
-### 如何观测webhook运行日志
+### 如何观测 webhook 运行日志
 
-pm2 logs(但是代码中需要打印log)
-
-
+pm2 logs(但是代码中需要打印 log)

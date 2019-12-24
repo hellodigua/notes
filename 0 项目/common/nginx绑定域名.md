@@ -2,11 +2,10 @@
 
 cd /etc/nginx
 
-
 配置目录在 /etc/nginx/conf.d
 配置文件规律
-服务端：应用名-server-800*.conf（从8000开始）
-网站： 应用名-300*.conf（从3000开始）
+服务端：应用名-server-800*.conf（从 8000 开始）
+网站： 应用名-300*.conf（从 3000 开始）
 创建第一个应用的配置文件并保存
 sudo vi billing-server-3000.conf
 
@@ -29,5 +28,6 @@ server {
   }
 }
 ```
+
 退出以后，通过以下命令检测配置文件是否错误
 sudo nginx -t

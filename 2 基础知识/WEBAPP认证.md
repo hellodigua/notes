@@ -1,12 +1,12 @@
 ## 笔记
 
-[Token ，Cookie和Session的区别](http://blog.csdn.net/Jmilk/article/details/55686267?locationNum=9&fps=1#cookie)
+[Token ，Cookie 和 Session 的区别](http://blog.csdn.net/Jmilk/article/details/55686267?locationNum=9&fps=1#cookie)
 
 [快速理解 session/token/cookie 认证方式](http://blog.csdn.net/Jmilk/article/details/55686267?locationNum=9&fps=1#cookie)
 
 ## basic auth
 
-简单说就是每次请求API时都提供用户的username和password
+简单说就是每次请求 API 时都提供用户的 username 和 password
 
 这种方式优点和缺点都很明显。
 
@@ -16,21 +16,21 @@
 
 ### Cookie
 
-WebApp一般以HTTP协议作为传输协议但HTTP协议是无状态的。
+WebApp 一般以 HTTP 协议作为传输协议但 HTTP 协议是无状态的。
 
 也就是说客户端与服务端一旦数据交换完毕后，两者之间的连接就会被关闭。客户端再次发送请求时需要建立新的连接。
 
-这就意味着服务端和客户端两者之间无法通过HTTP的连接来实现会话跟踪。显然这是不合理的因为这样无法保证完成一次WebApp业务流程中所产生的若干次请求/响应操作的原子性从而会导致业务逻辑混乱。
+这就意味着服务端和客户端两者之间无法通过 HTTP 的连接来实现会话跟踪。显然这是不合理的因为这样无法保证完成一次 WebApp 业务流程中所产生的若干次请求/响应操作的原子性从而会导致业务逻辑混乱。
 
-cookie就是为了解决这一问题所引入的会话跟踪机制。
+cookie 就是为了解决这一问题所引入的会话跟踪机制。
 
 ### Session
 
-当客户端请求服务端并通过身份认证后，服务端就会生成并保存身份认证相关的session数据，并将对应的sesssion_id写入cookie然后再响应到客户端，客户端会把cookie文件保存在本地。
+当客户端请求服务端并通过身份认证后，服务端就会生成并保存身份认证相关的 session 数据，并将对应的 sesssion_id 写入 cookie 然后再响应到客户端，客户端会把 cookie 文件保存在本地。
 
-此后，客户端的所有请求都会附带该session_id，以确定服务端是否存在对应的session数据以及检验session数据中的login-status。
+此后，客户端的所有请求都会附带该 session_id，以确定服务端是否存在对应的 session 数据以及检验 session 数据中的 login-status。
 
-如果存在且login-status为True，则证明客户端是被信任的，无须再次认证身份。否则，需要重新进入身份认证流程。
+如果存在且 login-status 为 True，则证明客户端是被信任的，无须再次认证身份。否则，需要重新进入身份认证流程。
 
 缺点:
 

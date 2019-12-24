@@ -2,11 +2,11 @@
 
 ## express-generator
 
-express-generator可以快速创建应用程序框架
+express-generator 可以快速创建应用程序框架
 
     npm install express-generator -g
     //安装框架
-    
+
     express myapp
     // 创建应用
     cd myapp
@@ -37,17 +37,17 @@ HANDLER 是在路由匹配时执行的函数。
     app.post('/', function (req, res) {
       res.send('Got a POST request');
     });
-    
+
     // PUT请求
     app.put('/user', function (req, res) {
       res.send('Got a PUT request at /user');
     });
-    
+
     // GET请求
     app.get('/sth', function (req, res) {
       res.send('Got a GET request');
     });
-    
+
 ### req
 
 req.query： 处理 get 请求，获取 get 请求参数
@@ -61,8 +61,3 @@ req.param()： 处理 get 和 post 请求，但查找优先级由高到低为 re
 
     //定义目录，静态文件可以放如public目录
     app.use(express.static('public'));
-    
-
-
-
-

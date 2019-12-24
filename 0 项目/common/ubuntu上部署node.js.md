@@ -1,6 +1,6 @@
-# Ubuntu上部署Node.js程序
+# Ubuntu 上部署 Node.js 程序
 
-## Ubuntu上一些基础命令
+## Ubuntu 上一些基础命令
 
 ```sh
 fdisk -l 查看挂载盘
@@ -9,7 +9,7 @@ df -h 查看硬盘使用情况（有用）
 
 ## 购买服务器后的初始化
 
-- 升级更新ubuntu的包
+- 升级更新 ubuntu 的包
 
 sudo apt-get update
 sudo apt-get upgrade
@@ -21,29 +21,29 @@ sudo apt-get install vim openssl build-essential libssl-dev wget curl git
 
 ### 设置子用户并赋予权限
 
-- 切换到root
-su root
-（如果要输入密码，且没有密码，可以先sudo passwd root）
+- 切换到 root
+  su root
+  （如果要输入密码，且没有密码，可以先 sudo passwd root）
 
 - 创建用户
-adduser user_name
-然后输入密码
+  adduser user_name
+  然后输入密码
 
-- 加入sudo组并赋予权限
-gpasswd -a user_name sudo
-// 给用户权限
-vi /etc/sudoers
-在root ALL=(ALL:ALL) ALL下面再加一行
-user_name ALL=(ALL:ALL) ALL
-然后 wq!
+- 加入 sudo 组并赋予权限
+  gpasswd -a user_name sudo
+  // 给用户权限
+  vi /etc/sudoers
+  在 root ALL=(ALL:ALL) ALL 下面再加一行
+  user_name ALL=(ALL:ALL) ALL
+  然后 wq!
 
-### 添加ssh（不输入密码登录）
+### 添加 ssh（不输入密码登录）
 
-- 在本地环境的.ssh目录下执行
+- 在本地环境的.ssh 目录下执行
 
   ssh-keygen -t rsa -b 4096 -C "hellodigua@gmail.com"
-  eval "$(ssh-agent -s)"
-  // 跑起来ssh代理
+  eval "\$(ssh-agent -s)"
+  // 跑起来 ssh 代理
   ssh-add ~/.ssh/id_rsa
   // 添加密钥到代理
 
@@ -52,11 +52,11 @@ user_name ALL=(ALL:ALL) ALL
   在当前用户根目录(/home/user)生成公钥
   ssh-keygen -t rsa -b 4096 -C 'hellodigua@gmail.com'
   // 同样是客户端的两个步骤
-  eval "$(ssh-agent -s)"
+  eval "\$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
 
-  进入.ssh目录
-  创建 authorized_keys ，并把本地环境的id_rsa.pub的内容，复制粘贴到authorized_keys里
+  进入.ssh 目录
+  创建 authorized_keys ，并把本地环境的 id_rsa.pub 的内容，复制粘贴到 authorized_keys 里
   chmod 600 authorized_keys // 设置权限
   sudo service ssh restart // 重启
 
@@ -64,24 +64,24 @@ user_name ALL=(ALL:ALL) ALL
 
 ### 安全策略
 
-- 修改22端口避免被扫到
+- 修改 22 端口避免被扫到
 
   sudo vi /etc/ssh/sshd_config
-  找到Port 22，把22改成1025 ~ 65535之间的任何一个即可
+  找到 Port 22，把 22 改成 1025 ~ 65535 之间的任何一个即可
   最后加上一行
   AllowUsers user_name
 
-- 安装fail2ban防止ssh暴力破解
+- 安装 fail2ban 防止 ssh 暴力破解
 
 sudo apt-get install fail2ban
 编辑配置文件
 sudo vi /etc/fail2ban/jail.conf
 
-  bantime = 600 #屏蔽时间，该bantime将被[ssh-iptables]中bantime覆盖，可以改成3600
-  findtime = 600 #发现时间，在此期间内重试超过规定次数，会激活fail2ban
-  maxretry = 3 #默认尝试次数
+bantime = 600 #屏蔽时间，该 bantime 将被[ssh-iptables]中 bantime 覆盖，可以改成 3600
+findtime = 600 #发现时间，在此期间内重试超过规定次数，会激活 fail2ban
+maxretry = 3 #默认尝试次数
 
-  destemail #可以改成自己的邮箱
+destemail #可以改成自己的邮箱
 
 保存退出
 
@@ -89,26 +89,31 @@ sudo service fail2ban status # 查看运行状态
 sudo service fail2ban stop
 sudo service fail2ban start
 
-## 配置NGINX
+## 配置 NGINX
+
 作用：通过反向代理实现用域名访问应用
 
 ### 安装
+
 sudo apt-get install nginx
+
 - 基本命令
-sudo service nginx reload # 重启nginx
-nginx -s reload # 重启nginx
+  sudo service nginx reload # 重启 nginx
+  nginx -s reload # 重启 nginx
 - 安全设置
-进入 /etc/nginx
-vi nginx.conf
-取消注释 server_tokens off（就是去掉前面的#，这样在浏览器访问服务的时候隐藏服务器具体信息）
+  进入 /etc/nginx
+  vi nginx.conf
+  取消注释 server_tokens off（就是去掉前面的#，这样在浏览器访问服务的时候隐藏服务器具体信息）
 
 ### 应用配置
+
 配置目录在 /etc/nginx/conf.d
 配置文件规律
-服务端：应用名-server-800*.conf（从8000开始）
-网站： 应用名-300*.conf（从3000开始）
+服务端：应用名-server-800*.conf（从 8000 开始）
+网站： 应用名-300*.conf（从 3000 开始）
 创建第一个应用的配置文件并保存
 sudo vi billing-server-3000.conf
+
 ```
 # 负载均衡
 upstream about {
@@ -128,23 +133,27 @@ server {
   }
 }
 ```
+
 退出以后，通过以下命令检测配置文件是否错误
 sudo nginx -t
 
-## 部署https
+## 部署 https
 
 ### 选择厂商
-国内的厂商可以选择阿里云、腾讯云、七牛云、又拍云，它们均提供免费的SSL证书
+
+国内的厂商可以选择阿里云、腾讯云、七牛云、又拍云，它们均提供免费的 SSL 证书
 不过七牛云和又拍云要求必须使用他们家的云服务，所以还是选择阿里云和腾讯云吧，申请流程略。
 
 ### 部署证书
+
 - 上传证书
-利用xftp或者命令等方式，将下载下来的证书上传到/www/ssl里
-上传： scp -P 端口号 文件 用户@ip:/路径
-下载： scp -P 端口号 -r 用户@ip:/远程目录 本地目录 (-r即下载目录，不带则下载文件)
-记得先上传到自己的用户目录，其他目录没权限……
-- 修改nginx配置
-将下面代码覆盖到nginx里对应的配置文件里
+  利用 xftp 或者命令等方式，将下载下来的证书上传到/www/ssl 里
+  上传： scp -P 端口号 文件 用户@ip:/路径
+  下载： scp -P 端口号 -r 用户@ip:/远程目录 本地目录 (-r 即下载目录，不带则下载文件)
+  记得先上传到自己的用户目录，其他目录没权限……
+- 修改 nginx 配置
+  将下面代码覆盖到 nginx 里对应的配置文件里
+
 ```
 upstream resume {
   server 127.0.0.1:3000;
@@ -178,61 +187,67 @@ server {
   }
 }
 ```
+
 那么应该就成功了
 
-## 配置Node
+## 配置 Node
 
-### 安装Node环境
+### 安装 Node 环境
 
-用nvm安装node.js有风险，强烈不建议使用！！
-首先安装node.js
+用 nvm 安装 node.js 有风险，强烈不建议使用！！
+首先安装 node.js
 sudo apt-get install nodejs-legacy
-安装好以后，nodejs 在apt-get上还是4.+的版本，而现在官方都更新到8了，所以还需要继续更新。
-把下面的8改成对应的位数，即可更新对应的版本
+安装好以后，nodejs 在 apt-get 上还是 4.+的版本，而现在官方都更新到 8 了，所以还需要继续更新。
+把下面的 8 改成对应的位数，即可更新对应的版本
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 然后执行如下命令增加系统文件监控数目
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
-最后安装常用npm包就可以开始了
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+最后安装常用 npm 包就可以开始了
 sudo npm install cnpm yarn pm2 webpack gulp http-server -g
-- 如果是国内服务器，那么可以把npm源指定为淘宝源
-npm --registry=https://registry.npm.taobao.org install -g npm
 
-## pm2 （node持久化运行）
+- 如果是国内服务器，那么可以把 npm 源指定为淘宝源
+  npm --registry=https://registry.npm.taobao.org install -g npm
+
+## pm2 （node 持久化运行）
+
 安装就是正常的安装 npm install pm2 -g
+
 - 常用命令
-pm2 list # 查看所有node应用
-pm2 logs # 查看所有日志
-pm2 monit # 查看资源消耗
-pm2 web # 开启api访问，在web中查看（通过9615端口）
-- 对单个应用的操作（通过app_name和appId均可）
-pm2 start app_name # 启动应用
-pm2 restart app_name # 重启应用
-pm2 stop app_name # 停止应用
-pm2 delete app_name # 删除应用进程
-pm2 show app_name # 查看应用的具体信息
-pm2 describe app_name # 查看应用详细部署状态，3是App Id
+  pm2 list # 查看所有 node 应用
+  pm2 logs # 查看所有日志
+  pm2 monit # 查看资源消耗
+  pm2 web # 开启 api 访问，在 web 中查看（通过 9615 端口）
+- 对单个应用的操作（通过 app_name 和 appId 均可）
+  pm2 start app_name # 启动应用
+  pm2 restart app_name # 重启应用
+  pm2 stop app_name # 停止应用
+  pm2 delete app_name # 删除应用进程
+  pm2 show app_name # 查看应用的具体信息
+  pm2 describe app_name # 查看应用详细部署状态，3 是 App Id
 
 ## 项目部署发布
-部署发布的本质是，本地和服务器同时部署了一个git仓库，然后通过pm2，本地提交了代码以后，服务器自动拉取代码然后执行若干命令，这样就完成了代码的自动部署发布
 
-## 利用coding.net实现代码同步
+部署发布的本质是，本地和服务器同时部署了一个 git 仓库，然后通过 pm2，本地提交了代码以后，服务器自动拉取代码然后执行若干命令，这样就完成了代码的自动部署发布
 
-1. 在coding新建仓库
-2. 把本地的公钥粘贴到coding的公钥设置里去（id_rsa.pub）
-2. 把服务器的公钥粘贴到coding的**项目的公钥设置**里去（coding的项目公钥只具备可读权限）
-3. 本地push代码到coding仓库
-4. 服务器新建一个目录并拉取代码
+## 利用 coding.net 实现代码同步
 
-## 利用pm2发送指令到服务端
+1. 在 coding 新建仓库
+2. 把本地的公钥粘贴到 coding 的公钥设置里去（id_rsa.pub）
+3. 把服务器的公钥粘贴到 coding 的**项目的公钥设置**里去（coding 的项目公钥只具备可读权限）
+4. 本地 push 代码到 coding 仓库
+5. 服务器新建一个目录并拉取代码
 
-首先在服务端新建目录/www/billing-server并赋予读写权限
+## 利用 pm2 发送指令到服务端
+
+首先在服务端新建目录/www/billing-server 并赋予读写权限
 mkdir /www
 cd /www
 mkdir billing-server
 chmod 777 billing-server
-在本地的项目里新建一个pm2的配置文件 
+在本地的项目里新建一个 pm2 的配置文件
 pm2 ecosystem
+
 ```json
 {
   "apps": [
@@ -263,15 +278,18 @@ pm2 ecosystem
   }
 }
 ```
+
 然后在本地环境的项目根目录下执行：
 pm2 deploy ecosystem.json production setup
-这时候服务器上/www/service下应该会部署上去文件了
-注意的是，第一次需要加上setup，以后就不需要了
+这时候服务器上/www/service 下应该会部署上去文件了
+注意的是，第一次需要加上 setup，以后就不需要了
 pm2 deploy ecosystem.json production
-- 为了ssh发布方便避免提前返回，同时需要进行如下操作
-cd ~
-vi .bashrc
-注销如下片段（7 - 10行）
+
+- 为了 ssh 发布方便避免提前返回，同时需要进行如下操作
+  cd ~
+  vi .bashrc
+  注销如下片段（7 - 10 行）
+
 ```
 case $- in
     *i*);;

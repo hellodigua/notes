@@ -24,7 +24,7 @@ TypeScript 是 JavaScript 的一个超集，主要提供了类型系统和对 ES
 
 - 大部分第三方库都有提供给 TypeScript 的类型定义文件
 - TypeScript 拥抱了 ES6 规范，也支持部分 ESNext 草案的规范
-- 主流前端框架均已支持TypeScript开发
+- 主流前端框架均已支持 TypeScript 开发
 
 ### 缺点
 

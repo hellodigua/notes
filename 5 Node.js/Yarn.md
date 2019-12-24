@@ -7,15 +7,15 @@ npm install yarn -g
 ## 常用命令
 
 - 初始化项目
-yarn init(npm init)
+  yarn init(npm init)
 
 - 添加包
-yarn add [package] --dev （开发依赖）
-npm install [package]
+  yarn add [package] --dev （开发依赖）
+  npm install [package]
 
 - 更新包
-yarn upgrade [package]
-npm update [package]
+  yarn upgrade [package]
+  npm update [package]
 
 - 安装项目里的包依赖
 
@@ -31,4 +31,3 @@ npm uninstall [package]
 ## 项目初始化
 
 yarn install --registry=https://registry.npm.taobao.org
-

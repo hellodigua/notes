@@ -2,7 +2,7 @@
 
 ## 介绍
 
-用来处理HTTP请求
+用来处理 HTTP 请求
 
 使用：
 http://www.open-open.com/lib/view/open1435301679966.html
@@ -16,10 +16,10 @@ https://github.com/request/request
 
 - 表单
 
-- HTTP认证
+- HTTP 认证
 
-- OAuth登录
+- OAuth 登录
 
-- 定制HTTP header
+- 定制 HTTP header
 
 - cookies

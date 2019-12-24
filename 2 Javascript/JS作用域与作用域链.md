@@ -35,9 +35,9 @@
 
 ```js
 var n = 10;
-function outer(){
-  function inner(){
-    function center(){
+function outer() {
+  function inner() {
+    function center() {
       console.log(n);
     }
     center();
@@ -55,4 +55,3 @@ outer(); //=> undefined
 由于变量的查找是沿着作用域链来实现的，所以也称作用域链为**变量查找的机制**。
 
 这个机制也说明了**访问局部变量要比访问全局变量更快**，因为中间的查找过程更短。但是 JavaScript 引擎在优化标识符查询方面做得很好，因此这个差别可以忽略不计。
-

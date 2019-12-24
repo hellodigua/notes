@@ -10,19 +10,18 @@ docker rm <docker container id>
 docker rmi <docker image id>
 
 进入指定的容器中
-docker exec -i -t 容器名称或者容器ID bash
-
+docker exec -i -t 容器名称或者容器 ID bash
 
 ## 端口分配
 
-webhook服务 4001
+webhook 服务 4001
 
 ### 静态页面
+
 about-me 3001 - digua.pro
 nichijou 3002 - nichijou.digua.pro
 
 ### 后端服务
+
 billing-server 8001 - billing-server.digua.me
 nichijou-server 8002 - nichi.digua.pro
-
-

@@ -2,8 +2,8 @@
 
 ## 基础工具
 
-nrm - 管理npm源
-nvm - 管理node版本
+nrm - 管理 npm 源
+nvm - 管理 node 版本
 
 ## nrm
 
@@ -16,4 +16,3 @@ sudo i -g nrm
 - 安装
 
 参考 https://github.com/creationix/nvm#git-install
-

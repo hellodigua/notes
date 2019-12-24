@@ -27,4 +27,3 @@ Uncaught URIError: URI malformed
 XMLHttpRequest cannot load [http://some/url/](http://some/url/). No ‘Access-Control-Allow-Origin’ header is present on the requested resource
 
 InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
-
