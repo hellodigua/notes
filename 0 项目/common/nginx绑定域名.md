@@ -31,3 +31,6 @@ server {
 
 退出以后，通过以下命令检测配置文件是否错误
 sudo nginx -t
+
+然后重启 nginx
+sudo service nginx reload
