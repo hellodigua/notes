@@ -4,7 +4,7 @@
 
 ### travis-ci
 
-GH_REF: https://hellodigua%40gmail.com:52hostker@git-ct.smartgslb.com/diguame
+GH_REF: https://hellodigua%40gmail.com:digua0323@e.coding.net/hellodigua/digua.me.git
 
 ### webhook
 

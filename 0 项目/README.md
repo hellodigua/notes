@@ -18,10 +18,7 @@ webhook 服务 4001
 
 ### 静态页面
 
-about-me 3001 - digua.pro
-nichijou 3002 - nichijou.digua.pro
-
 ### 后端服务
 
-billing-server 8001 - billing-server.digua.me
+billing-server 8001 - billing.digua.pro
 nichijou-server 8002 - nichi.digua.pro

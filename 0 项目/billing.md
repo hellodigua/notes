@@ -1,12 +1,12 @@
 # nichijou
 
-管理员密码： digua323
+管理员密码： digua233
 
 ## 配置项
 
 ### travis-ci
 
-GH_REF: https://hellodigua%40gmail.com:digua0323@e.coding.net/hellodigua/nichijou.digua.me.git
+GH_REF: https://hellodigua%40gmail.com:digua0323@e.coding.net/hellodigua/billing.digua.me.git
 
 ## 构建流程
 
