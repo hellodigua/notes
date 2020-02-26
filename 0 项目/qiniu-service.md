@@ -4,7 +4,7 @@
 
 ### travis-ci
 
-GH_REF:https://hellodigua%40gmail.com:digua0323@e.coding.net/hellodigua/service.digua.me.git
+GH_REF: https://hellodigua%40gmail.com:digua0323@e.coding.net/hellodigua/service.digua.me.git
 
 ## 构建流程
 
