@@ -30,3 +30,7 @@
 
 2. 高度
    搜索 sidebar_tree ， 将里面的"row_padding"的值改为 [8, 4]
+
+# 添加到右键菜单（mac）
+
+http://weishu.me/2015/12/31/add-sublime-editor-to-finder-context-menu/
