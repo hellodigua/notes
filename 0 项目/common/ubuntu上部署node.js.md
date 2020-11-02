@@ -213,6 +213,13 @@ sudo npm install cnpm yarn pm2 webpack gulp http-server -g
 
 安装就是正常的安装 npm install pm2 -g
 
+安装以后记得安装日记插件，限制下日志数量
+
+pm2 install pm2-logrotate
+
+设置超过 50 个日志就自动清除：
+pm2 set pm2-logrotate:retain 50
+
 - 常用命令
   pm2 list # 查看所有 node 应用
   pm2 logs # 查看所有日志
