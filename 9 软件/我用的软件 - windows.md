@@ -25,10 +25,7 @@ Foxmail（有配置） ✔
 阿里旺旺 ✔
 百度网盘 ✔
 有道词典 ✔
-番茄土豆 ✔
-火狐浏览器 ✔
 
-钉钉 ✔
 Steam ✔
 
 Photoshop（D 盘）
@@ -39,10 +36,6 @@ LICEcap ✔
 
 ## 环境依赖
 
-java jdk（必装）
-python（必装）
-.net framework （必装）
-
 Cmder（有配置）
 Mongo
 nodejs
@@ -51,8 +44,3 @@ sourcetree
 
 putty
 Robomongo（可视化 mongo 界面）
-Xftp（linux 文件传输）
-
-# 其他
-
-MediaCoder 压制视频用
