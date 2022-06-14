@@ -20,7 +20,6 @@ webhook 服务 4001
 
 ### 后端服务
 
-billing-server 8001 - billing.digua.pro
 nichijou-server 8002 - nichi.digua.pro
 
 ## 服务器信息

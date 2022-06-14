@@ -1,6 +1,0 @@
-<!--subpackagePull/pullSbPkg.wxml-->
-<button bindtap='pullSubPackages'>pull sub packages</button>
-
-<view>
-{{tip}}
-</view>
