@@ -6,6 +6,15 @@
 
 clashX Pro 开启增强模式，然后复制终端代理命令后在终端执行，可以让终端走代理流量
 
+### git clone 加速方法2
+
+如果是用 ssh 的方式，可以使用挂个 ssh 代理
+
+vim ~/.ssh/config
+添加如下行：
+#ssh proxy
+ProxyCommand nc -v -x 127.0.0.1:7890 %h %p
+
 ## homebrew 更换镜像加速
 
 [使用 阿里云 的 Homebrew 镜像源进行加速](https://learnku.com/cs/wikis/39228)
